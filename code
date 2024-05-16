@@ -51,8 +51,13 @@ def iniciar_conversa(partes):
     print("\nVocê pode agora fazer perguntas sobre a ata.")
 
     while True:
-        pergunta = input("\nFaça uma pergunta sobre o documento (ou digite 'fim' para encerrar): ")
-        if pergunta.lower() == 'fim':
+        pergunta = input("\nFaça  pergunta sobre o documento, \ndigite 'exportar' para salvar a ata em '.txt' \nou digite 'fim' para encerrar a conversa'): ")
+        if pergunta.lower() == 'fim': # finalizar a interação com o usuário
+            break
+        elif pergunta.lower() == 'exportar': # exportar a ata em .txt
+            with open('C:/new_minute.txt', 'w') as f: # Substitua com o caminho do seu arquivo
+                f.write(resumo_completo)
+            print("A ata foi salva na pasta selecionada")
             break
         resposta = enviar_para_openai(pergunta, contexto, client)
         print("\nResposta:", resposta)
